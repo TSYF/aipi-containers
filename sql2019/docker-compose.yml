@@ -2,13 +2,16 @@ version: "3.9"
 services:
   aipi-sql2019:
     build: .
-    ports:
-      - 1433:1433
-    volumes:
-      - /data/aipi/sql2019:/var/opt/mssql/data/
-    environment:
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=KoA5P8I5A1FpeV
     hostname: aipi-sql2019
     image: aipi-sql2019
     container_name: aipi-sql2019
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=KoA5P8I5A1FpeV
+      - TZ=America/Santiago
+    volumes:
+      - "./data/:/var/opt/mssql/data/"
+      - "./log/:/var/opt/mssql/log/"
+      - "./secrets/:/var/opt/mssql/secrets/"
